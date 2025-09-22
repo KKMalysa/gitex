@@ -1,3 +1,4 @@
 main = branch1.3 resolve me
 main = branch1.3 resolve me
 main = branch1.3 resolve me
+wykonanie bugfixa (zmiany zestashowane na dużym zadaniu)
