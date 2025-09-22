@@ -1,0 +1,73 @@
+jeżeli użyjesz git stash, to stracisz ten plik.
+jeśli już, to użyj git stash -u.
+ale tym razem zrobimy WIP brancha, przeskoczymy na bugfix, a potem wrócimy tu.
+
+1
+git checkout -b feature/duze-zadanie   # jeśli gałąź jeszcze nie istnieje
+# ... pracujesz, tworzysz notatka.txt, zmieniasz main.txt ...
+git add -A                              # dodaj WSZYSTKO (także nowe pliki)
+git commit -m "WIP: duze zadanie – część 1"
+git push -u origin feature/duze-zadanie # (opcjonalnie) backup w remote
+
+2
+git checkout main
+git pull --rebase origin main           # zaktualizuj main
+
+git checkout -b bugfix/123-opis         # nowa gałąź na buga
+# ... poprawka ...
+git add -A
+git commit -m "bugfix(#123): krótki opis"
+git push -u origin bugfix/123-opis
+# w projekcie: PR → merge do main
+# lokalnie (do ćwiczeń): 
+# git checkout main && git merge --no-ff bugfix/123-opis && git push
+
+3
+git checkout feature/duze-zadanie
+git pull --rebase origin main           # wciągnij świeżego maina pod swoją pracę
+
+Masz dwie opcje „odwipowania” w zależności, jak chcesz kontynuować:
+
+A. Po prostu jedź dalej (WIP zostaje w historii):
+
+# edytujesz dalej...
+git add -A
+git commit -m "feature: duze zadanie – final"
+git push
+
+
+B. Chcesz, by zmiany z WIP znów były „niezacommitowane” (wracasz do trybu roboczego):
+
+git reset --mixed HEAD^    # cofa WIP o 1 commit, zmiany wracają do Working Directory
+# kontynuuj pracę (pliki są na dysku), potem:
+git add -A
+git commit -m "feature: duze zadanie – final"
+git push
+
+
+--mixed = nic nie ginie, po prostu wychodzisz z WIP commita z plikami z powrotem do edycji.
+(Gdybyś wolał, aby wszystko było od razu „staged”: użyj --soft zamiast --mixed.)
+
+4
+Sprzątanie historii przed PR (opcjonalnie, ale polecane)
+
+Jeśli zrobiłeś kilka WIP-ów — spłaszcz je do czytelnych commitów:
+
+git rebase -i origin/main
+# w edytorze: 
+# - przy finalnych commitach zostaw "pick"
+# - przy WIP wpisz "squash" albo "fixup" (połączysz je z finalnym)
+git push --force-with-lease
+
+
+--force-with-lease = bezpieczny force, nie nadpiszesz cudzej pracy.
+
+Dlaczego to jest lepsze niż stash?
+
+WIP commit na pewno obejmuje nowe pliki (git add -A), więc nic nie zginie.
+
+Możesz go zbackupować na zdalnym (git push), co chroni przed awarią laptopa.
+
+Łatwo „odwipować” (git reset --mixed HEAD^) i kontynuować.
+
+Przed PR-em porządkujesz historię (rebase -i) i jest czyściutko
