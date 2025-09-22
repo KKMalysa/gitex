@@ -1,0 +1,43 @@
+commity teraz wyglądają tak:
+afa0b97 (HEAD -> feature/sirious-task) WIP: sirious task - part 1
+4bdb4cf (origin/main, origin/HEAD) Merge pull request #2 from KKMalysa/bugfix/123-another-bug
+5678bbb (origin/bugfix/123-another-bug, bugfix/123-another-bug) bugfix of another bug
+95dd8aa (main) 'stash zadzialal, postep odzyskany'
+7dc95f2 (origin/feature/duze-zadanie, feature/duze-zadanie) git stash zadziałał, postep odzyskany
+6bcd7c0 Merge pull request #1 from KKMalysa/bugfix/literowka
+e331d24 (origin/bugfix/literowka, bugfix/literowka) bugfix resolved
+f142c6e  2nd part of conflict resolved
+53b874d 1st part of conflict resolved
+64e55b3 (branch1) conflikt part2
+2a35244 (branch0) conflict part 1
+7af15b5 ----- REVERT z powodu braku konfliktow, czas wywolac konflikt i go rozwiazać -----
+bd03895 (origin/branch1) 3x branch1.3
+9b1ddb0 3x branch0.3
+f3b699d (origin/branch0) bugfix/ 3x branch0.2 instead of branch02
+ddde131 Revert "changes to 02"
+1ddee55 changes to 02
+2ea48ef 3x branch0
+0572106 init
+----------------------------------
+można by zostawić i robić dalej, ale lepiej nie zaśmiecać historii commitów, dlatego
+git reset --soft HEAD^ i historia commitów wygląda tak: (powinno brakować tego afa0b97) i brakuje :)
+
+$ git log --oneline
+4bdb4cf (HEAD -> feature/sirious-task, origin/main, origin/HEAD) Merge pull request #2 from KKMalysa/bugfix/123-another-bug
+5678bbb (origin/bugfix/123-another-bug, bugfix/123-another-bug) bugfix of another bug
+95dd8aa (main) 'stash zadzialal, postep odzyskany'
+7dc95f2 (origin/feature/duze-zadanie, feature/duze-zadanie) git stash zadziałał, postep odzyskany
+6bcd7c0 Merge pull request #1 from KKMalysa/bugfix/literowka
+e331d24 (origin/bugfix/literowka, bugfix/literowka) bugfix resolved
+f142c6e  2nd part of conflict resolved
+53b874d 1st part of conflict resolved
+64e55b3 (branch1) conflikt part2
+2a35244 (branch0) conflict part 1
+7af15b5 ----- REVERT z powodu braku konfliktow, czas wywolac konflikt i go rozwiazać -----
+bd03895 (origin/branch1) 3x branch1.3
+9b1ddb0 3x branch0.3
+f3b699d (origin/branch0) bugfix/ 3x branch0.2 instead of branch02
+ddde131 Revert "changes to 02"
+1ddee55 changes to 02
+2ea48ef 3x branch0
+0572106 init
