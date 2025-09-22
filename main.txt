@@ -1,3 +1,3 @@
-main = init 
-main = init
-main = init
+main = branch0.2 konflikt
+main = branch0.2 konflikt
+main = branch0.2 konflikt
